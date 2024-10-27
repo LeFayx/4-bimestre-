@@ -1,0 +1,30 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const flashcardContainer = document.getElementById("flashcard-container");
+    
+    // Supõe que `perguntas` seja um array de objetos no `perguntas.js`
+    perguntas.forEach(flashcard => {
+        const card = document.createElement("article");
+        card.classList.add("flashcard");
+        
+        const question = document.createElement("div");
+        question.classList.add("flashcard__question");
+        question.innerHTML = `<h3>${flashcard.category}</h3><p>${flashcard.question}</p>`;
+        
+        const answer = document.createElement("div");
+        answer.classList.add("flashcard__answer");
+        answer.textContent = flashcard.answer;
+        
+        // Evento para exibir a resposta
+        card.addEventListener("click", () => answer.classList.toggle("visible"));
+
+        card.appendChild(question);
+        card.appendChild(answer);
+        flashcardContainer.appendChild(card);
+    });
+});
+
+const perguntas = [
+    { category: "Programação", question: "O que é JavaScript?", answer: "JavaScript é uma linguagem de programação usada para desenvolvimento web." },
+    { category: "HTML", question: "Para que serve a tag <head>?", answer: "A tag <head> contém metadados e links para arquivos CSS, scripts, e título da página." },
+    // Adicione outros flashcards aqui
+];
